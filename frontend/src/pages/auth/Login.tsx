@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import API from "../../lib/api";
 import { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
@@ -13,6 +15,7 @@ const Login = () => {
     try {
       const res = await API.post("/auth/login", form);
       login(res.data.token, res.data.user);
+      navigate("/dashboard");
     } catch (err) {
       const axiosError = err as AxiosError<{ message: string }>;
       setError(axiosError.response?.data?.message || "Login failed");
