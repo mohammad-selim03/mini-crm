@@ -100,7 +100,7 @@ const NewProject = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, title: e.target.value })
                     }
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                    className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                     required
                   />
                 </div>
@@ -125,7 +125,7 @@ const NewProject = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, budget: e.target.value })
                       }
-                      className="block w-full pl-7 rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                      className="block w-full pl-7 p-2 text-black rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                       required
                     />
                   </div>
@@ -145,7 +145,7 @@ const NewProject = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, deadline: e.target.value })
                     }
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                    className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                     required
                   />
                 </div>
@@ -163,7 +163,7 @@ const NewProject = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, status: e.target.value })
                     }
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                    className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                   >
                     <option value="pending">Pending</option>
                     <option value="in_progress">In Progress</option>
@@ -184,7 +184,7 @@ const NewProject = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, clientId: e.target.value })
                     }
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                    className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                   >
                     <option value="">Select a client</option>
                     {clients.map((client) => (

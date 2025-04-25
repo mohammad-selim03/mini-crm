@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../../../context/ThemeContext";
 import API from "../../../lib/api";
+import { Link } from "react-router-dom";
 
 interface DashboardData {
   totalClients: number;
@@ -68,40 +69,39 @@ const Dashboard = () => {
 
   return (
     <div className="p-6 text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-900 min-h-screen">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-        >
-          {theme === "light" ? "🌙" : "☀️"}
-        </button>
-      </div>
-
       {/* Overview Cards */}
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-        <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg shadow">
+        <Link
+          to={"/clients"}
+          className="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg shadow"
+        >
           <div className="text-sm text-blue-600 dark:text-blue-300">
             Total Clients
           </div>
           <div className="text-2xl font-bold">{dashboardData.totalClients}</div>
-        </div>
-        <div className="bg-green-50 dark:bg-green-900 p-4 rounded-lg shadow">
+        </Link>
+        <Link
+          to={"/projects"}
+          className="bg-green-50 dark:bg-green-900 p-4 rounded-lg shadow"
+        >
           <div className="text-sm text-green-600 dark:text-green-300">
             Total Projects
           </div>
           <div className="text-2xl font-bold">
             {dashboardData.totalProjects}
           </div>
-        </div>
-        <div className="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg shadow">
+        </Link>
+        <Link
+          to={"/reminders"}
+          className="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg shadow"
+        >
           <div className="text-sm text-purple-600 dark:text-purple-300">
             Upcoming Reminders
           </div>
           <div className="text-2xl font-bold">
             {dashboardData.upcomingReminders?.length || 0}
           </div>
-        </div>
+        </Link>
         <div className="bg-orange-50 dark:bg-orange-900 p-4 rounded-lg shadow">
           <div className="text-sm text-orange-600 dark:text-orange-300">
             Active Projects
@@ -111,23 +111,54 @@ const Dashboard = () => {
               ?._count || 0}
           </div>
         </div>
+        <Link
+          to={"/interactions"}
+          className="bg-lime-50 dark:bg-orange-900 p-4 rounded-lg shadow"
+        >
+          <div className="text-sm text-black dark:text-orange-300">
+            Interactions
+          </div>
+          <div className="text-2xl font-bold">
+            {dashboardData.projectsByStatus?.find((p) => p.status === "active")
+              ?._count || 0}
+          </div>
+        </Link>
       </div>
 
       {/* Projects by Status */}
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-4">Projects by Status</h2>
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {dashboardData.projectsByStatus?.map((status) => (
-            <div
-              key={status.status}
-              className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow"
-            >
-              <div className="text-sm text-gray-600 dark:text-gray-300 capitalize">
-                {status.status}
+          {dashboardData?.projectsByStatus?.map((status) => {
+            console.log("status", status)
+            // Define status-specific styles
+            const getStatusStyles = (statusType: string) => {
+              switch (statusType) {
+                case "completed":
+                  return "bg-green-50 dark:bg-green-900 text-green-600 dark:text-green-300";
+                case "pending":
+                  return "bg-yellow-50 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300";
+                case "in_progress":
+                  return "bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-300";
+                default:
+                  return "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300";
+              }
+            };
+
+            const statusStyle = getStatusStyles(status.status);
+
+            return (
+              <div
+                key={status.status}
+                className={`p-4 rounded-lg shadow transition-all duration-200 hover:shadow-md ${statusStyle}`}
+              >
+                <div className="text-sm capitalize mb-2">
+                  {status.status.replace("_", " ")}
+                </div>
+                <div className="text-xl font-bold">{status._count}</div>
               </div>
-              <div className="text-xl font-bold">{status._count}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

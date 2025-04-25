@@ -73,7 +73,7 @@ export default function NewClientPage() {
                     id="name"
                     type="text"
                     {...register("name")}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                    className="mt-1 block w-full p-2 rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                   />
                   {errors.name && (
                     <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -93,7 +93,7 @@ export default function NewClientPage() {
                     id="email"
                     type="email"
                     {...register("email")}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                    className="mt-1 block w-full p-2 rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                   />
                   {errors.email && (
                     <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -113,7 +113,7 @@ export default function NewClientPage() {
                     id="phone"
                     type="tel"
                     {...register("phone")}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                    className="mt-1 block w-full p-2 rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                   />
                   {errors.phone && (
                     <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -133,7 +133,7 @@ export default function NewClientPage() {
                     id="company"
                     type="text"
                     {...register("company")}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                    className="mt-1 block w-full p-2 rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                   />
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default function NewClientPage() {
                   id="notes"
                   rows={4}
                   {...register("notes")}
-                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                  className="mt-1 block w-full p-2 rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                 />
               </div>
 

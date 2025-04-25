@@ -101,7 +101,7 @@ const EditProject = () => {
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
         </div>
@@ -115,7 +115,7 @@ const EditProject = () => {
             onChange={(e) =>
               setFormData({ ...formData, budget: e.target.value })
             }
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
         </div>
@@ -129,7 +129,7 @@ const EditProject = () => {
             onChange={(e) =>
               setFormData({ ...formData, deadline: e.target.value })
             }
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
         </div>
@@ -142,7 +142,7 @@ const EditProject = () => {
             onChange={(e) =>
               setFormData({ ...formData, status: e.target.value })
             }
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
             <option value="pending">Pending</option>
             <option value="in_progress">In Progress</option>
@@ -158,7 +158,7 @@ const EditProject = () => {
             onChange={(e) =>
               setFormData({ ...formData, clientId: e.target.value })
             }
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full p-2 text-black rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
             <option value="">Select a client</option>
             {clients.map((client) => (
