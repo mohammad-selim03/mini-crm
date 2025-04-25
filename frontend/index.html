@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -7,22 +7,22 @@
     <title>Tech CRM</title>
     <script>
       // Immediately inject dark mode if needed
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
+      (function () {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else if (
+          !savedTheme &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("theme", "dark");
+        }
+      })();
     </script>
   </head>
-  <body class="h-full bg-white dark:bg-gray-900 transition-colors duration-200">
-    <div
-      id="root"
-      class="h-full bg-white dark:bg-gray-900 transition-colors duration-200"
-    ></div>
+  <body>
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

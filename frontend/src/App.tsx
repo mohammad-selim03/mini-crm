@@ -12,9 +12,9 @@ import Reminders from "./pages/Reminders/Reminders";
 import EditProject from "./pages/Projects/EditProject";
 import NewProject from "./pages/Projects/NewProject";
 import EditClientPage from "./pages/Clients/EditClients";
-import NewClientPage from "./pages/Clients/NewClients";
-import { useTheme } from "./context/ThemeContext";
+import NewClientPage from "./pages/Clients/NewClients"; 
 import Dashboard from "./pages/auth/Dashboard/Dashaboard";
+import NotFound from "./pages/Notfound";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth();
@@ -27,17 +27,12 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 };
 
 const App = () => {
-  const { isDark } = useTheme();
-
   return (
-    <div
-      className={`min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200 ${
-        isDark ? "dark" : ""
-      }`}
-    >
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-theme">
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
+            <Route path="*" element={<NotFound />} />
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />

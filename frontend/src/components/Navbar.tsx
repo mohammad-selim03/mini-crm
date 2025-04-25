@@ -3,66 +3,51 @@ import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
-  const { isDark, toggleTheme } = useTheme();
-  const { isAuthenticated } = useAuth();
+  const { theme, toggleTheme } = useTheme();
+  const { user } = useAuth();
 
   return (
-    <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors duration-200   ">
+    <nav className="bg-white dark:bg-gray-900 shadow-lg transition-theme">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-            <div className="flex-shrink-0 flex items-center">
+        <div className="flex items-center justify-between h-16">
+            <div className="flex-shrink-0">
               <Link
                 to="/"
-                className="text-xl font-bold text-gray-800 dark:text-white"
+                className="text-gray-900 dark:text-white font-bold text-xl"
               >
-                Tech CRM
+                Tech Blog
               </Link>
             </div>
-          <div className="flex">
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link
-                to="/"
-                className="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Home
-              </Link>
-              {isAuthenticated ? (
+          <div className="flex items-center">
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-4">
+                <Link
+                  to="/"
+                  className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Home
+                </Link>
                 <Link
                   to="/dashboard"
-                  className="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
                 </Link>
-              ) : (
-                <>
-                  <Link
-                    to="/login"
-                    className="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                  >
-                    Register
-                  </Link>
-                </>
-              )}
+              </div>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-4">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-theme"
               aria-label="Toggle dark mode"
             >
-              {isDark ? (
+              {theme === "dark" ? (
                 <svg
-                  className="w-5 h-5 text-yellow-400"
+                  className="w-5 h-5 text-gray-600 dark:text-gray-300"
                   fill="none"
-                  stroke="currentColor"
                   viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
                   <path
                     strokeLinecap="round"
@@ -73,10 +58,10 @@ const Navbar = () => {
                 </svg>
               ) : (
                 <svg
-                  className="w-5 h-5 text-gray-800"
+                  className="w-5 h-5 text-gray-600 dark:text-gray-300"
                   fill="none"
-                  stroke="currentColor"
                   viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
                   <path
                     strokeLinecap="round"
@@ -101,7 +86,7 @@ const Navbar = () => {
             Home
           </Link>
 
-          {isAuthenticated ? (
+          {user ? (
             <Link
               to="/dashboard"
               className="block px-3 py-2 text-base font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
