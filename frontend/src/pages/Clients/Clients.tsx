@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Client } from "../../types/client";
 import DeleteClientModal from "../../components/DeleteClientModal";
+import { PlusIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 export default function ClientsPage() {
   const { data, isLoading, refetch } = useClients();
@@ -23,52 +24,142 @@ export default function ClientsPage() {
       );
       setSelectedClient(null);
       refetch?.();
-    } catch (err) {
-      console.error(err);
+    } catch (error: unknown) {
+      console.error("Failed to delete client:", error);
     }
   };
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Clients</h1>
-        <button onClick={() => navigate("/clients/new")}>+ Add Client</button>
-      </div>
-
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : data?.length === 0 ? (
-        <p>No clients found.</p>
-      ) : (
-        <div className="grid gap-4">
-          {data?.map((client) => (
-            <div
-              key={client.id}
-              className="bg-white dark:bg-gray-800 p-4 rounded shadow"
-            >
-              <h2 className="font-semibold text-lg">{client.name}</h2>
-              <p>
-                {client.email} | {client.phone}
-              </p>
-              <p className="text-sm text-gray-500">{client.company}</p>
-              <div className="mt-2 flex gap-2">
-                <button onClick={() => navigate(`/clients/edit/${client.id}`)}>
-                  Edit
-                </button>
-                <button onClick={() => setSelectedClient(client)}>
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Clients
+            </h1>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              Manage your client relationships and information.
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/clients/new")}
+            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            <PlusIcon className="h-5 w-5 mr-2" />
+            Add Client
+          </button>
         </div>
-      )}
 
-      <DeleteClientModal
-        isOpen={!!selectedClient}
-        onClose={() => setSelectedClient(null)}
-        onConfirm={handleDelete}
-      />
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          </div>
+        ) : data?.length === 0 ? (
+          <div className="text-center py-12">
+            <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">
+              No clients
+            </h3>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Get started by creating a new client.
+            </p>
+            <div className="mt-6">
+              <button
+                onClick={() => navigate("/clients/new")}
+                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                <PlusIcon className="h-5 w-5 mr-2" />
+                Add Client
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-white dark:bg-gray-800 shadow-xl rounded-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      Name
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      Contact
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      Company
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                  {data?.map((client) => (
+                    <tr
+                      key={client.id}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                    >
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm font-medium text-gray-900 dark:text-white">
+                          {client.name}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {client.email}
+                        </div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {client.phone}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {client.company || "-"}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div className="flex items-center space-x-3">
+                          <button
+                            onClick={() =>
+                              navigate(`/clients/edit/${client.id}`)
+                            }
+                            className="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300"
+                          >
+                            <PencilIcon className="h-5 w-5" />
+                          </button>
+                          <button
+                            onClick={() => setSelectedClient(client)}
+                            className="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300"
+                          >
+                            <TrashIcon className="h-5 w-5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        <DeleteClientModal
+          isOpen={!!selectedClient}
+          onClose={() => setSelectedClient(null)}
+          onConfirm={handleDelete}
+        />
+      </div>
     </div>
   );
 }
