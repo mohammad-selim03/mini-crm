@@ -6,21 +6,12 @@ interface Client {
   id: string;
   name: string;
 }
-
-interface Project {
-  id: string;
-  title: string;
-  budget: number;
-  deadline: string;
-  status: string;
-  clientId: string;
-}
+ 
 
 const EditProject = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [clients, setClients] = useState<Client[]>([]);
-  const [project, setProject] = useState<Project | null>(null);
+  const [clients, setClients] = useState<Client[]>([]); 
   const [formData, setFormData] = useState({
     title: "",
     budget: "",
@@ -41,8 +32,7 @@ const EditProject = () => {
         API.get("/clients"),
         API.get(`/projects/${id}`),
       ]);
-      setClients(clientsRes.data);
-      setProject(projectRes.data);
+      setClients(clientsRes.data); 
       setFormData({
         title: projectRes.data.title,
         budget: projectRes.data.budget.toString(),

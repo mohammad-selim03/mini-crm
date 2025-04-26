@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useTheme } from "../../../context/ThemeContext";
+import { useEffect, useState } from "react"; 
 import API from "../../../lib/api";
 import { Link } from "react-router-dom";
 
@@ -19,8 +18,7 @@ interface DashboardData {
   }>;
 }
 
-const Dashboard = () => {
-  const { theme, toggleTheme } = useTheme();
+const Dashboard = () => { 
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(
     null
   );
