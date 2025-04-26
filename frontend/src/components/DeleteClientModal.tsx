@@ -18,17 +18,17 @@ export default function DeleteClientModal({ isOpen, onClose, onConfirm }: Props)
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="bg-white dark:bg-gray-900 rounded-xl p-6 w-full max-w-md shadow-lg relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg relative">
         <h2 className="text-xl font-semibold">Delete Client</h2>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+        <p className="text-sm text-gray-600 0 mt-2">
           Are you sure you want to delete this client? This action cannot be undone.
         </p>
 
         <div className="mt-6 flex justify-end gap-4">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-md border dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="px-4 py-2 rounded-md border text-gray-700 0 hover:bg-gray-100 transition"
           >
             Cancel
           </button>
@@ -42,7 +42,7 @@ export default function DeleteClientModal({ isOpen, onClose, onConfirm }: Props)
 
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+          className="absolute top-2 right-2 text-gray-400 hover:text-gray-600  "
           aria-label="Close"
         >
           ✕

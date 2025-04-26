@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"; 
+import { useEffect, useState } from "react";
 import API from "../../../lib/api";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ interface DashboardData {
   }>;
 }
 
-const Dashboard = () => { 
+const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(
     null
   );
@@ -66,56 +66,34 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="p-6 text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-900 min-h-screen">
+    <div className="p-6 bg-white   min-h-screen">
       {/* Overview Cards */}
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-        <Link
-          to={"/clients"}
-          className="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg shadow"
-        >
-          <div className="text-sm text-blue-600 dark:text-blue-300">
-            Total Clients
-          </div>
+        <Link to={"/clients"} className="bg-blue-50  p-4 rounded-lg shadow">
+          <div className="text-sm text-blue-600 font-semibold">Total Clients</div>
           <div className="text-2xl font-bold">{dashboardData.totalClients}</div>
         </Link>
-        <Link
-          to={"/projects"}
-          className="bg-green-50 dark:bg-green-900 p-4 rounded-lg shadow"
-        >
-          <div className="text-sm text-green-600 dark:text-green-300">
-            Total Projects
-          </div>
-          <div className="text-2xl font-bold">
+        <Link to={"/projects"} className="bg-green-50 p-4 rounded-lg shadow">
+          <div className="text-sm text-black font-semibold">Total Projects</div>
+          <div className="text-2xl font-bold text-black">
             {dashboardData.totalProjects}
           </div>
         </Link>
-        <Link
-          to={"/reminders"}
-          className="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg shadow"
-        >
-          <div className="text-sm text-purple-600 dark:text-purple-300">
-            Upcoming Reminders
-          </div>
+        <Link to={"/reminders"} className="bg-purple-50 p-4 rounded-lg shadow">
+          <div className="text-sm text-black font-semibold">Upcoming Reminders</div>
           <div className="text-2xl font-bold">
             {dashboardData.upcomingReminders?.length || 0}
           </div>
         </Link>
-        <div className="bg-orange-50 dark:bg-orange-900 p-4 rounded-lg shadow">
-          <div className="text-sm text-orange-600 dark:text-orange-300">
-            Active Projects
-          </div>
+        <div className="bg-orange-50 p-4 rounded-lg shadow">
+          <div className="text-sm text-orange-600">Active Projects</div>
           <div className="text-2xl font-bold">
             {dashboardData.projectsByStatus?.find((p) => p.status === "active")
               ?._count || 0}
           </div>
         </div>
-        <Link
-          to={"/interactions"}
-          className="bg-lime-50 dark:bg-orange-900 p-4 rounded-lg shadow"
-        >
-          <div className="text-sm text-black dark:text-orange-300">
-            Interactions
-          </div>
+        <Link to={"/interactions"} className="bg-lime-50 p-4 rounded-lg shadow">
+          <div className="text-sm text-black">Interactions</div>
           <div className="text-2xl font-bold">
             {dashboardData.projectsByStatus?.find((p) => p.status === "active")
               ?._count || 0}
@@ -128,18 +106,18 @@ const Dashboard = () => {
         <h2 className="text-xl font-semibold mb-4">Projects by Status</h2>
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {dashboardData?.projectsByStatus?.map((status) => {
-            console.log("status", status)
+            console.log("status", status);
             // Define status-specific styles
             const getStatusStyles = (statusType: string) => {
               switch (statusType) {
                 case "completed":
-                  return "bg-green-50 dark:bg-green-900 text-green-600 dark:text-green-300";
+                  return "bg-green-50 text-green-600 d";
                 case "pending":
-                  return "bg-yellow-50 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300";
+                  return "bg-yellow-50 text-yellow-600";
                 case "in_progress":
-                  return "bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-300";
+                  return "bg-blue-50 text-blue-600 ";
                 default:
-                  return "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300";
+                  return "bg-gray-100 text-gray-600";
               }
             };
 
@@ -163,31 +141,31 @@ const Dashboard = () => {
       {/* Upcoming Reminders */}
       <div>
         <h2 className="text-xl font-semibold mb-4">Upcoming Reminders</h2>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-700">
+        <div className="bg-white  rounded-lg shadow overflow-hidden">
+          <table className="min-w-full divide-y divide-gray-200 ">
+            <thead className="bg-gray-50 ">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Due Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Notes
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Related To
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody className="bg-white divide-y divide-gray-200 ">
               {dashboardData.upcomingReminders?.map((reminder) => (
                 <tr key={reminder.id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {new Date(reminder.dueDate).toLocaleDateString()}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {reminder.notes}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {reminder.client?.name || reminder.project?.title || "N/A"}
                   </td>
                 </tr>

@@ -28,7 +28,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-gray-100 ">
+    <div className="min-h-screen bg-white">
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
